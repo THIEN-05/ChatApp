@@ -1,33 +1,31 @@
 // Import framework express
-const express = require('express')
+const express = require('express');
 // Import giao thức http
-const http = require('http')
+const http = require("http");
 // Import class của thư viện socket.io
-const { Server } = require('socket.io')
-// 
-const cors = require('cors')
-
+const { Server } = require('socket.io');
+// Import cors
+const cors = require('cors');
 var port = 5000;
 
 
 // Khai báo đối tượng của express
 const app = express()
 
-// Khai báo server của express chạy bằng giao thức http
+// Khai báo server chạy bằng giao thức http dựa trên đối tượng của express
 const server = http.createServer(app);
 
-// Khai báo đối tượng của class Server
-// Biến để kết nối với thư viện socket.io
+// Tạo đối tượng đại diện cho socket.io (tích hợp thư viện vào server)
 const io = new Server(server, {
-
     cors: {
-        origin: `http://localhost:${port}`,
+        // Địa chỉ của front-end
+        origin: `http://localhost:3000`,
         methods: ["GET", "POST"],
     },
 });
 
 
-io.on('connection', (socket) => {
+io.on('connection', () => {
     console.log('A user connected');
 });
 

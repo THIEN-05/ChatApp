@@ -3,7 +3,7 @@ import './App.css';
 import io from 'socket.io-client';
 
 // Tạo đối tượng kết nối đến server 
-io.connect('http://localhost:3000');
+const socket = io.connect('http://localhost:5000');
 
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
 
 
   };
+  
   return (
     <div className="App">
       <input placeholder='Input here' />
